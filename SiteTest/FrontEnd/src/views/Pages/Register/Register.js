@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
+import CaptchaWidget from '../../../components/captcha';
+
+
 class Register extends Component {
   render() {
     return (
@@ -42,6 +45,16 @@ class Register extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password" placeholder="Repeat password" autoComplete="new-password" />
+                    </InputGroup>
+                    <InputGroup className="mb-4">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-lock"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <InputGroupText>
+                        <CaptchaWidget />
+                      </InputGroupText>
                     </InputGroup>
                     <Button color="success" block>Create Account</Button>
                   </Form>
