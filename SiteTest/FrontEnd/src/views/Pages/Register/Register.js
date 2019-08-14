@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import get from 'lodash.get';
 
 import CaptchaWidget from '../../../components/captcha';
+//import CaptchaService from '../../../components/captcha/captchaService';
+import * as captchaActions from '../../../components/captcha/reducer';
 
 
 class Register extends Component {
+
+  componentDidMount() {
+    // CaptchaService.postNewKey();
+    // this.props.dispatch({type: 'captcha/KEY_POST_STARTED'});
+    this.props.createNewKeyCaptcha();
+
+  }
+
   render() {
+    console.log('-----props-----', this.props);
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -78,4 +92,25 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const mapState = (state) => {
+  return {
+    captcha: {
+      keyValue: get(state, 'captcha.key.data'),
+      isKeyLoading: get(state, 'captcha.key.loading'),
+      isKeyError: get(state, 'captcha.key.error'),
+      isSuccess: get(state, 'captcha.key.success')
+    }
+  }
+}
+
+const mapDispatch = {
+
+  createNewKeyCaptcha: () => {
+    return dispatch => dispatch(captchaActions.createNewKey());
+  }
+
+}
+
+
+
+export default connect(mapState, mapDispatch)(Register);
