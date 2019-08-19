@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -52,7 +53,7 @@ namespace SiteTest.Controllers
             _emailSender = emailSender;
         }
         [HttpPost("post-guid-captcha")]
-        public async Task<IActionResult> GuidCaptcha()
+        public IActionResult GuidCaptcha()
         {
             //await _emailSender.SendEmailAsync("novakvova@gmail.com", "Confirm Email",
             //   $"Please confirm your email by clicking here: " +

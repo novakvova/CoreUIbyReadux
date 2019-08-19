@@ -36,6 +36,12 @@ export const captchaReducer = (state = initialState, action) => {
             newState = update.set(newState, 'key.data', null);
             break;
         }
+        case KEY_POST_SUCCESS: {
+            newState = update.set(state, 'key.loading', false);
+            newState = update.set(newState, 'key.success', true);
+            newState = update.set(newState, 'key.data', action.payload.data);
+            break;
+        }
 
         default: {
             return newState;
