@@ -65,7 +65,7 @@ class Register extends Component {
         captchaKey: keyValue
       };
       console.log('model send data', model);
-      var url = "https://localhost:44388/api/account/register";
+      var url = "/api/account/register";
       axios.post(url, model)
         .then(() => this.setState({
           done: true
